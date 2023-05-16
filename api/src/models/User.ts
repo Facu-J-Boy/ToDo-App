@@ -1,18 +1,28 @@
-import {Model, Column, Table, CreatedAt, UpdatedAt} from 'sequelize-typescript';
+import {Model, Column, Table, DataType} from 'sequelize-typescript';
 
 @Table
 export class User extends Model<User> {
- @Column
- name!: string;
-
- @Column
- lastName!: string;
-
- @CreatedAt
- @Column
- createdAt!: Date;
-
- @UpdatedAt
- @Column
- updatedAt!: Date;
+    @Column({
+        type: DataType.STRING,
+        defaultValue: DataType.UUIDV4,
+        primaryKey: true,
+        allowNull: false
+    })
+    id!: string;
+    
+    @Column({
+        type: DataType.STRING,
+        allowNull: false
+    })
+    name!: string;
+    @Column({
+        type: DataType.STRING,
+        allowNull: false
+    })
+    lastName!: string;
+    @Column({
+        type: DataType.STRING,
+        allowNull: false
+    })
+    email!: string
 }

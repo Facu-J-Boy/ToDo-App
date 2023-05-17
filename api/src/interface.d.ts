@@ -1,10 +1,11 @@
 export interface inputUser {
+    id: string | null,
     name: string,
     lastName: string,
     email: string
 }
 
-export interface User {
+export interface outputUser {
     id: string,
     name: string,
     lastName: string,

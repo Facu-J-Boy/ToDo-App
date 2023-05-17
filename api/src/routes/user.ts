@@ -8,9 +8,9 @@ router.get('/', (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
-    const datos = req.body
+    const dates = req.body
     try {
-        const newUser = await controller.createUser(datos);
+        const newUser = await controller.createUser(dates);
         res.status(201).send(newUser)
     } catch (error: any) {
         res.status(404).send(error.message)

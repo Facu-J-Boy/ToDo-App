@@ -1,4 +1,4 @@
-import { User } from "models/User";
+import { User } from "../../models/User";
 import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export const controller = {

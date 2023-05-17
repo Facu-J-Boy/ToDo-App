@@ -3,6 +3,7 @@ import { inputUser, outputUser } from "interface";
 import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export const controller = {
+
     createUser: async (dates: inputUser & Omit<User, NullishPropertiesOf<User>>) => {
         try {
             const newUser: outputUser = await User.create (dates);

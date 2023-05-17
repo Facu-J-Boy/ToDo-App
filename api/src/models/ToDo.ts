@@ -1,6 +1,7 @@
-import {Model, Column, Table, DataType} from 'sequelize-typescript';
+import {Model, Column, Table, DataType, BelongsTo, ForeignKey} from 'sequelize-typescript';
+import { User } from './User';
 
-@Table
+@Table({ tableName: 'todos', timestamps: false })
 export class ToDo extends Model<ToDo> {
     @Column({
         type: DataType.STRING,
@@ -15,4 +16,13 @@ export class ToDo extends Model<ToDo> {
         allowNull: false
     })
     text!: string
+
+    @ForeignKey(() => User)
+      @Column
+      userId!: string
+
+
+    @BelongsTo(() => User)
+    user!: User
+    
 }

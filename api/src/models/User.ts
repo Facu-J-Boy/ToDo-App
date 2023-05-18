@@ -3,6 +3,9 @@ import { ToDo } from './ToDo';
 
 @Table({ tableName: 'users', timestamps: false })
 export class User extends Model<User> {
+    addToDo(create: ToDo) {
+        throw new Error("Method not implemented.");
+    }
     @Column({
         type: DataType.STRING,
         defaultValue: DataType.UUIDV4,

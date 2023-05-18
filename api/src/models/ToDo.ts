@@ -3,9 +3,6 @@ import { User } from './User';
 
 @Table({ tableName: 'todos', timestamps: false })
 export class ToDo extends Model<ToDo> {
-    setUser(user: User) {
-        throw new Error("Method not implemented.");
-    }
     @Column({
         type: DataType.STRING,
         defaultValue: DataType.UUIDV4,
@@ -25,7 +22,11 @@ export class ToDo extends Model<ToDo> {
       userId!: string
 
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => User, 'userId')
     user!: User
+
+    setUser(user: User): void {
+        this.user = user;
+      }
     
 }

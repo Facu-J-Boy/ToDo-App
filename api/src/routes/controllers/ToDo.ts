@@ -21,5 +21,16 @@ export const controller = {
             console.error('ERROR: ', error);
             return null
         }
+    },
+
+    deleteToDo: async (id: string) => {
+        try {
+            await ToDo.destroy({
+                where: {id: id}
+            });
+            console.log('ToDo deleted');
+        } catch (error) {
+            console.error('ERROR: ', error);
+        }
     }
 }

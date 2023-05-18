@@ -29,7 +29,7 @@ export class User extends Model<User> {
     })
     email!: string;
 
-    @HasMany(() => ToDo)
+    @HasMany(() => ToDo, 'userId') 
     todos!: ToDo[]
 
     setToDo(todo: ToDo): void {

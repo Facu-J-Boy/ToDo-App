@@ -19,7 +19,10 @@ export const controller = {
         try {
             const user = await User.findOne({
                 where: [{id: id}],
-                include: {model: ToDo}
+                include: {
+                    model: ToDo,
+                    order: [['order', 'ASC']]
+                },
             });
             if(!user) { 
             console.log('User not found')

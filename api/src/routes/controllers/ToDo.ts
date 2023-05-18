@@ -23,6 +23,19 @@ export const controller = {
         }
     },
 
+    getTodosByUser: async (userId: string): Promise<ToDo[]> => {
+        try {
+          const todos: ToDo[] = await ToDo.findAll({
+            where: { userId: userId },
+            order: [['order', 'ASC']]
+          });
+          return todos;
+        } catch (error) {
+          console.error('ERROR: ', error);
+          return [];
+        }
+      },
+
     deleteToDo: async (id: string) => {
         try {
             await ToDo.destroy({

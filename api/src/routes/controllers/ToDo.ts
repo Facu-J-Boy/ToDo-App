@@ -10,13 +10,31 @@ export const controller = {
         try {
             const user: User | null = await User.findByPk(id);
             if (!user) {
-                console.log('Usuario no encontrado');
-                return null;
-              }
-            const create: ToDo = await ToDo.create(dates);
-            user.setToDo(create);
+              console.log('Usuario no encontrado');
+              return null;
+            }
+        
+            const lastOrderTodo = await ToDo.findOne({
+              where: {
+                userId: id
+              },
+              order: [['order', 'DESC']]
+            });
+        
+            let order = 1;
+        
+            if (lastOrderTodo) {
+              order = lastOrderTodo.order + 1;
+            }
+        
+            const create: ToDo = await ToDo.create({
+              ...dates,
+              order: order,
+              userId: id
+            });
+        
             console.log('ToDo creado y relacionado al usuario correctamente');
-            return create
+            return create;
         } catch (error) {
             console.error('ERROR: ', error);
             return null

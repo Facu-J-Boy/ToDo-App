@@ -3,6 +3,16 @@ import { controller } from './controllers/ToDo';
 
 const router = Router()
 
+router.get('/:id', async (req: Request, res: Response) => {
+    const {id} = req.params
+    try {
+        const todos = await controller.getTodosByUser(id);
+        res.status(201).send(todos);
+    } catch (error: any) {
+        res.status(404).send(error.message);        
+    }
+})
+
 router.post('/', async (req: Request, res: Response) => {
     const {id, dates} = req.body;
     try {

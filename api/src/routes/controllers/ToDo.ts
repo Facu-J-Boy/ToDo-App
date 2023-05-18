@@ -32,5 +32,17 @@ export const controller = {
         } catch (error) {
             console.error('ERROR: ', error);
         }
+    },
+
+    updateToDo: async (id: string, text: string) => {
+        try {
+            await ToDo.update(
+                {text: text},
+                {where: {id: id}}
+            );
+            console.log('ToDo updated');
+        } catch (error) {
+            console.error('ERROR: ', error);
+        }
     }
 }

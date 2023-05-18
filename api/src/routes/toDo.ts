@@ -23,4 +23,15 @@ router.delete('/:id', async (req: Request, res: Response) => {
     }
 })
 
+router.put('/update/:id', async (req: Request, res: Response) => {
+    const {id} = req.params;
+    const {text} = req.body;
+    try {
+        const updateToDo = await controller.updateToDo(id, text);
+        res.status(201).send(updateToDo);
+    } catch (error: any) {
+        res.status(404).send(error.message);
+    }
+})
+
 export default router;

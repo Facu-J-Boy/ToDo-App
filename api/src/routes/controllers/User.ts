@@ -21,6 +21,9 @@ export const controller = {
                 where: [{id: id}],
                 include: {model: ToDo}
             });
+            if(!user) { 
+            console.log('User not found')
+            }
             return user;
         } catch (error) {
             console.error('ERROR TO FIND USER: ', error);

@@ -14,7 +14,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
-    const dates = req.body
+    const dates = req.body;
     try {
         const newUser = await controller.createUser(dates);
         res.status(201).send(newUser)

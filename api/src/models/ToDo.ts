@@ -18,15 +18,13 @@ export class ToDo extends Model<ToDo> {
     text!: string
 
     @ForeignKey(() => User)
-      @Column
+      @Column({
+        type: DataType.STRING,
+        allowNull: false
+      })
       userId!: string
 
 
-    @BelongsTo(() => User, 'userId')
-    user!: User
-
-    setUser(user: User): void {
-        this.user = user;
-      }
-    
+    @BelongsTo(() => User)
+    user!: User    
 }

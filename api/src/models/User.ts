@@ -29,10 +29,14 @@ export class User extends Model<User> {
     })
     email!: string;
 
-    @HasMany(() => ToDo, 'todosId')
+    @HasMany(() => ToDo)
     todos!: ToDo[]
 
     setToDo(todo: ToDo): void {
+        !this.todos?
+          this.todos = []
+        :
         this.todos.push(todo);
-    }
+        this.save();
+      }
 }

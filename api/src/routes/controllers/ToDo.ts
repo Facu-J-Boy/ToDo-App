@@ -1,4 +1,4 @@
-import { Optional } from "sequelize";
+import { CreateOptions } from "sequelize";
 import { ToDo } from "../../models/ToDo";
 import { User } from "../../models/User";
 import { NullishPropertiesOf } from "sequelize/types/utils";
@@ -6,7 +6,7 @@ import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export const controller = {
 
-    createToDo: async (id: string, dates: Optional<ToDo, NullishPropertiesOf<ToDo>>): Promise <ToDo | null> => {
+    createToDo: async (id: string, dates: Omit<ToDo, NullishPropertiesOf<ToDo>>): Promise <ToDo | null> => {
         try {
             const user: User | null = await User.findByPk(id);
             if (!user) {
@@ -14,7 +14,7 @@ export const controller = {
                 return null;
               }
             const create: ToDo = await ToDo.create(dates);
-            create.setUser(user);
+            user.setToDo(create);
             console.log('ToDo creado y relacionado al usuario correctamente');
             return create
         } catch (error) {

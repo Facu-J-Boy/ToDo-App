@@ -18,7 +18,7 @@ export const controller = {
     user: async (id: string) => {
         try {
             const user = await User.findOne({
-                where: {id: id},
+                where: [{id: id}],
                 include: {model: ToDo}
             });
             return user;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { auth, provider } from '../../Firebase';
-import { signInWithRedirect, getRedirectResult, UserCredential } from 'firebase/auth';
+import { signInWithRedirect, getRedirectResult } from 'firebase/auth';
 
 const LoginWithGoogle = () => {
 
@@ -18,7 +18,7 @@ const LoginWithGoogle = () => {
     const handleSignInWithGoogle = async () => {
         try {
             await signInWithRedirect(auth, provider);
-            const result: UserCredential | null = await getRedirectResult(auth);
+            await getRedirectResult(auth);
         } catch (error) {
             console.error(error);
         }

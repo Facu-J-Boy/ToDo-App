@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import LoginWithGoogle from './LoginWithGoogle/LoginWithGoogle';
 
 const App = ():JSX.Element => {
   return (
-    <div>App</div>
+    <LoginWithGoogle />
   )
 }
 

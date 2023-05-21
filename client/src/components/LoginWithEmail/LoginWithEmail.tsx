@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-const LoginWithEmail = (): JSX.Element => {
+const LoginWithEmail: React.FC = (): JSX.Element => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 

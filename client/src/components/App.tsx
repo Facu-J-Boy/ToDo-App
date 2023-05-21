@@ -4,7 +4,7 @@ import LoginWithEmail from './LoginWithEmail/LoginWithEmail';
 import LogOut from './LogOut/LogOut';
 import SignUpWithEmail from './SignUpWithEmail/SignUpWithEmail';
 
-const App = ():JSX.Element => {
+const App: React.FC = ():JSX.Element => {
   return (
     <>
      <LoginWithEmail />

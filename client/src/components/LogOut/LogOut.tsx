@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAuth, signOut } from 'firebase/auth';
 
-const LogOut = () => {
+const LogOut: React.FC = (): JSX.Element => {
     const handleLogout = async () => {
         try {
           const auth = getAuth();

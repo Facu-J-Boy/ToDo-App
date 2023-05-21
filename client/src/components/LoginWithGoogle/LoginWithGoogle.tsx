@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { auth, provider } from '../../Firebase';
 import { signInWithRedirect, getRedirectResult } from 'firebase/auth';
 
-const LoginWithGoogle = (): JSX.Element => {
+const LoginWithGoogle: React.FC = (): JSX.Element => {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {

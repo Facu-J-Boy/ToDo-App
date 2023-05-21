@@ -3,12 +3,12 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const LoginWithEmail = (): JSX.Element => {
     const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
         const auth = getAuth();
-      await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(auth, email, password);
       // El inicio de sesión fue exitoso
       console.log('Inicio de sesión exitoso');
       // Realiza las acciones correspondientes al inicio de sesión exitoso

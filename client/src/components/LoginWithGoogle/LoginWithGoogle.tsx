@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { auth, provider } from '../../Firebase';
 import { signInWithRedirect, getRedirectResult } from 'firebase/auth';
-import { JsxElement } from 'typescript';
 
 const LoginWithGoogle = (): JSX.Element => {
 

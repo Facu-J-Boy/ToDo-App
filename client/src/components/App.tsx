@@ -1,18 +1,15 @@
 import React from 'react';
-import LoginWithGoogle from './LoginWithGoogle/LoginWithGoogle';
-import LoginWithEmail from './LoginWithEmail/LoginWithEmail';
-import LogOut from './LogOut/LogOut';
-import SignUpWithEmail from './SignUpWithEmail/SignUpWithEmail';
+import {Routes, Route} from 'react-router-dom';
 import ToDoList from './ToDoList/ToDoList';
+import LoginScreen from './LoginScreen/LoginScreen';
 
 const App: React.FC = ():JSX.Element => {
   return (
     <>
-     <LoginWithEmail />
-     <LoginWithGoogle />
-     <LogOut />
-     <SignUpWithEmail />
-     <ToDoList />
+    <Routes>
+      <Route path='/' element={<LoginScreen />} />
+      <Route path='/user' element={<ToDoList />} />
+     </Routes>
     </>
   )
 }

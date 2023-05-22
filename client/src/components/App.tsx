@@ -3,6 +3,7 @@ import LoginWithGoogle from './LoginWithGoogle/LoginWithGoogle';
 import LoginWithEmail from './LoginWithEmail/LoginWithEmail';
 import LogOut from './LogOut/LogOut';
 import SignUpWithEmail from './SignUpWithEmail/SignUpWithEmail';
+import ToDo from './ToDo/ToDo';
 
 const App: React.FC = ():JSX.Element => {
   return (
@@ -11,6 +12,8 @@ const App: React.FC = ():JSX.Element => {
      <LoginWithGoogle />
      <LogOut />
      <SignUpWithEmail />
+     <ToDo />
+     <ToDo />
     </>
   )
 }

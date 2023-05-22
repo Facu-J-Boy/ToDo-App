@@ -7,6 +7,8 @@ module.exports = {
     colors: {
       white: '#FFFFFF',
       green: '#75B1A9',
+      greenHard: '#4F6457',
+      greenSoft: '#ACD0C0'
     }
     // extend: {
     //   fontFamily: {

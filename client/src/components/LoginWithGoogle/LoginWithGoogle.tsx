@@ -26,8 +26,11 @@ const LoginWithGoogle: React.FC = (): JSX.Element => {
     
       return (
         <div>
-          <h1>Iniciar sesión</h1>
-          <button onClick={handleSignInWithGoogle}>Iniciar sesión con Google</button>
+          <button className="border-solid-black bg-white text-black font-bold py-2 px-4 rounded flex items-center" 
+          onClick={handleSignInWithGoogle}>
+                <img className='w-7 h-7' src='https://res.cloudinary.com/dvqh0exq6/image/upload/v1684869793/ToDo/Google_Icons-09-512_igqobv.png' />
+                Iniciar sesión con Google
+          </button>
         </div>
       );
 }

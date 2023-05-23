@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import LogoSmall from '../LogoSmall/LogoSmall';
+import LoginWithGoogle from '../LoginWithGoogle/LoginWithGoogle';
 
 const LoginWithEmail: React.FC = (): JSX.Element => {
     const [email, setEmail] = useState('');
@@ -80,11 +81,14 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
                           </a>
                     </p>
                 </form>
-                <p> ------- or -------</p>
-                <button className="border-solid-black bg-white text-black font-bold py-2 px-4 rounded flex items-center">
-                <img className='w-7 h-7' src='https://res.cloudinary.com/dvqh0exq6/image/upload/v1684869793/ToDo/Google_Icons-09-512_igqobv.png' />
-                Iniciar sesión con Google
-                </button>
+                  <div className="flex items-center">
+                     <hr className="flex-grow border border-grey mr-4" />
+                         <span className="text-black">or</span>
+                     <hr className="flex-grow border border-grey ml-4" />
+                  </div>
+                <div className='flex flex-col items-center'>
+                  <LoginWithGoogle />
+                </div>
             </div>
         </div>
     </div>

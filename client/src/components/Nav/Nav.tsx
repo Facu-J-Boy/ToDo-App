@@ -1,5 +1,6 @@
 import React from 'react';
 import LogoSmall from '../LogoSmall/LogoSmall';
+import LogOut from '../LogOut/LogOut';
 
 const Nav = () => {
   return (
@@ -7,7 +8,7 @@ const Nav = () => {
         <div className='ml-10'>
           <LogoSmall />
         </div>
-          <button className='right-0 absolute mr-5 bg-green p-2 mb-2 rounded-sm text-white'> Log out </button>
+          <LogOut />
     </div>
   )
 }

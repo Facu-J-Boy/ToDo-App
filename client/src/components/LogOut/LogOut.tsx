@@ -17,7 +17,8 @@ const LogOut: React.FC = (): JSX.Element => {
       };
     
       return (
-        <button onClick={handleLogout}>Cerrar sesión</button>
+        <button className='right-0 absolute mr-5 bg-green p-2 mb-2 rounded-sm text-white'
+        onClick={handleLogout}>Log out</button>
       );
 }
 

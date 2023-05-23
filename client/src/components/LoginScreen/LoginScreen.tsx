@@ -9,8 +9,6 @@ const LoginScreen = () => {
   return (
     <div>
         <LoginWithEmail />
-        <LoginWithGoogle />
-        <LogOut />
         <SignUpWithEmail />
         <Logo />
     </div>

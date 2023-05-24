@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import LogoSmall from './LogoSmall';
 import LoginWithGoogle from './LoginWithGoogle';
+import { Link } from 'react-router-dom';
 
 const LoginWithEmail: React.FC = (): JSX.Element => {
 
@@ -125,11 +126,13 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
                       Sign in
                       </button>
                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Don’t have an account yet? 
-                        <a href="#" 
-                        className="ml-1 font-medium text-blue hover:underline">
-                          Sign up
-                          </a>
+                        Don’t have an account yet?
+                        <Link to='/signup'> 
+                           <a href="#" 
+                           className="ml-1 font-medium text-blue hover:underline">
+                             Sign up
+                             </a>
+                          </Link>
                     </p>
                 </form>
                   <div className="flex items-center">

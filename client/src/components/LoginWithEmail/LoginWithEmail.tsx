@@ -16,13 +16,11 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(event.target.value);
-      // setEmailError('');
         setEmailError(!validateEmail(event.target.value));
     };
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
       setPassword(event.target.value);
-      // setPasswordError('');
         setPasswordError(!validatePassword(event.target.value));
     };
 
@@ -52,7 +50,7 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
     return passwordRegex.test(password);
   }
   
-  const isDisabled = email === '' || password === '' || !validateEmail(email);
+  const isDisabled = !validatePassword(password) || !validateEmail(email);
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

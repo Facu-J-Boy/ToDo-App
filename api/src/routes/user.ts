@@ -12,6 +12,16 @@ router.get('/', async (req: Request, res: Response) => {
     }
 })
 
+router.get('/:id', async (req: Request, res: Response) => {
+    const {id} = req.params;
+    try {
+        const user = await controller.getUser(id);
+        res.status(201).send(user);
+    } catch (error: any) {
+        res.status(404).send(error.message);
+    }
+})
+
 router.post('/', async (req: Request, res: Response) => {
     const dates = req.body;
     try {

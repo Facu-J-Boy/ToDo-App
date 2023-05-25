@@ -10,18 +10,6 @@ export class User extends Model<User> {
         allowNull: false
     })
     id!: string;
-    
-    @Column({
-        type: DataType.STRING,
-        allowNull: false
-    })
-    name!: string;
-    
-    @Column({
-        type: DataType.STRING,
-        allowNull: false
-    })
-    lastName!: string;
 
     @Column({
         type: DataType.STRING,

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import LogoSmall from './LogoSmall';
 import LoginWithGoogle from './LoginWithGoogle';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const LoginWithEmail: React.FC = (): JSX.Element => {
 
@@ -11,10 +11,6 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
-    console.log('password: ', password);
-
-    console.log('email: ', email)
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(event.target.value);
@@ -30,6 +26,7 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
   const handleLogin = async () => {
     try {
         const auth = getAuth();
+        console.log('Usuario: ', auth);
         await signInWithEmailAndPassword(auth, email, password);
       // El inicio de sesión fue exitoso
       console.log('Inicio de sesión exitoso');
@@ -40,6 +37,7 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
       // Realiza las acciones correspondientes al error de inicio de sesión
     }
   };
+
 
   const validateEmail = (email: string) => {
     // Expresión regular para validar el formato del email
@@ -128,12 +126,9 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
                       </button>
                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                         Don’t have an account yet?
-                        <Link to='/signup'> 
-                           <a href="#" 
-                           className="ml-1 font-medium text-blue hover:underline">
-                             Sign up
-                             </a>
-                          </Link>
+                        <NavLink to='/signup' className="ml-1 font-medium text-blue hover:underline">
+                          Sign up
+                        </NavLink>
                     </p>
                 </form>
                   <div className="flex items-center">

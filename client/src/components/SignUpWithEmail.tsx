@@ -10,10 +10,6 @@ const SignUpWithEmail: React.FC = (): JSX.Element => {
     const [passwordError, setPasswordError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    console.log('password: ', password);
-
-    console.log('email: ', email)
-
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(event.target.value);
         setEmailError(!validateEmail(event.target.value));

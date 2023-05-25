@@ -1,7 +1,20 @@
+import { 
+    POST_USER 
+} from "../Actions";
+
 const initialState = {
-    counter: 1,
+    user: {},
    };
    
    export default function reducer(state = initialState, action: any) {
-    return state;
+    switch (action.type) {
+        case POST_USER:
+            return {
+                ...state,
+                user: action.payload,
+            }
+    
+        default:
+            return state;
+    }
    }

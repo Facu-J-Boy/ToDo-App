@@ -13,6 +13,16 @@ export const controller = {
         }
     },
 
+
+    getUser: async (id: string): Promise <User | null> => {
+        try {
+            return User.findByPk(id);
+        } catch (error) {
+            console.error('ERROR: ', error);
+            throw error;
+        }
+    },
+
     createUser: async (dates: inputUser & Omit<User, NullishPropertiesOf<User>>): Promise <User> => {
         try {
             const newUser = await User.create (dates);

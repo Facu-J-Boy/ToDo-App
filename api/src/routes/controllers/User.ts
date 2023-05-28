@@ -13,23 +13,19 @@ export const controller = {
         }
     },
 
-
-    getUser: async (id: string): Promise <User | null> => {
+    findOrCreateUser: async (id: string, email: string) => {
         try {
-            return await User.findByPk(id);
+            const [user, created] = await User.findOrCreate({
+                where: {id},
+                defaults: {id, email},
+            });
+            if (created) {
+                return user;
+              } else {
+                return user;
+              }
         } catch (error) {
-            console.error('ERROR: ', error);
-            throw error;
-        }
-    },
-
-    createUser: async (dates: inputUser & Omit<User, NullishPropertiesOf<User>>): Promise <User> => {
-        try {
-            const newUser = await User.create (dates);
-            return newUser;            
-        } catch (error) {
-            console.error('ERROR TO CREATE USER: ', error);
-            throw error;
+            console.error('Error al buscar o crear el usuario:', error);
         }
     }
 }

@@ -1,8 +1,13 @@
 import {Model, Column, Table, DataType, HasMany} from 'sequelize-typescript';
 import { ToDo } from './ToDo';
 
+interface UserAttributes {
+  id: string;
+  email: string;
+}
+
 @Table({ tableName: 'users', timestamps: false })
-export class User extends Model<User> {
+export class User extends Model<UserAttributes> {
     @Column({
         type: DataType.STRING,
         defaultValue: DataType.UUIDV4,

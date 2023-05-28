@@ -12,25 +12,14 @@ router.get('/', async (req: Request, res: Response) => {
     }
 })
 
-router.get('/:id', async (req: Request, res: Response) => {
-    const {id} = req.params;
+router.post('/', async (req: Request, res: Response) => {
+    const {id, email} = req.body;
     try {
-        const user = await controller.getUser(id);
-        console.log(user)
-        res.status(201).send(user);
+        const findOrCreate = await controller.findOrCreateUser(id, email);
+        res.status(201).send(findOrCreate);
     } catch (error: any) {
-        res.status(404).send(error.message);
+        res.status(404).send(error.message)
     }
 })
-
-router.post('/', async (req: Request, res: Response) => {
-    const dates = req.body;
-    try {
-        const newUser = await controller.createUser(dates);
-        res.status(201).send(newUser)
-    } catch (error: any) {
-        res.status(404).send(error.message);
-    }
-});
 
 export default router;

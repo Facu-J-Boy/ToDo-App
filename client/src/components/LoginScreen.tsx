@@ -3,30 +3,54 @@ import LoginWithEmail from './LoginWithEmail';
 import Logo from './Logo';
 import { auth } from '../Firebase';
 import { UserInterface, getUser } from '../Redux/Actions';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { StoreState } from '../Redux/Reducers';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginScreenProps {
   user: UserInterface | {};
   getUser(id: string): void;
 }
 
-const LoginScreen: React.FC<LoginScreenProps> = ({getUser}): JSX.Element => {
+const LoginScreen: React.FC<LoginScreenProps> = ({getUser, user}): JSX.Element => {
+
+  const navigate = useNavigate()
+
+  const redirectToUser = () => {
+    navigate('/user');
+  }
+
+  const redirectToLoginScreen = () => {
+    navigate('/');
+  }
+
+  console.log('Estado global de user: ', user)
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        authenticated = true;
         getUser(user.uid);
       } else {
         console.log('Usuario no autenticado');
+        redirectToLoginScreen();
+        // authenticated = false;
       }
     });
   }, []);
   
+  useEffect(() => {
+    if(user) {
+      redirectToUser()
+    }
+    // !user? authenticated = false : authenticated = true 
+  })
+  
+  let authenticated: boolean = false
+  
   return (
     <div>
-        <LoginWithEmail />
-        <Logo />
+      {!authenticated && !user? <LoginWithEmail /> : <Logo />}        
     </div>
   )
 }

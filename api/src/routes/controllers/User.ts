@@ -16,7 +16,7 @@ export const controller = {
 
     getUser: async (id: string): Promise <User | null> => {
         try {
-            return User.findByPk(id);
+            return await User.findByPk(id);
         } catch (error) {
             console.error('ERROR: ', error);
             throw error;

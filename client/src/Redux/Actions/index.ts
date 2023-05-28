@@ -23,7 +23,7 @@ export const getUser = (id: string) => {
         try {
             const response = await axios.get<UserInterface>(`http://localhost:3001/api/user/${id}`);
             if (response){console.log('response: ', response)}
-            const user = response.data;
+            const user = !response.data? null : response.data;
             dispatch({
                 type: ActionTypes.getUser,
                 payload: user,

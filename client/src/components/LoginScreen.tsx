@@ -3,7 +3,7 @@ import LoginWithEmail from './LoginWithEmail';
 import Logo from './Logo';
 import { auth } from '../Firebase';
 import { UserInterface, getUser } from '../Redux/Actions';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { StoreState } from '../Redux/Reducers';
 import { useNavigate } from 'react-router-dom';
 

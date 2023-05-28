@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { ThunkAction } from "redux-thunk";
 import { ActionTypes } from "./Types";
 
 export const POST_USER = 'POST_USER';
@@ -15,6 +14,11 @@ export interface UserInterface {
 export interface GetUserAction {
     type: ActionTypes.getUser;
     payload: UserInterface | null;
+}
+
+export interface PostUserAction {
+    type: ActionTypes.postUser;
+    payload: UserInterface
 }
 
 export const getUser = (id: string) => {
@@ -35,15 +39,15 @@ export const getUser = (id: string) => {
 };
 
 export const postUser = (date: any) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: Dispatch<PostUserAction>) => {
         try {
             const newUser = await axios.post<UserInterface>(`${url}/user`, date);
             return dispatch ({
-                type: POST_USER,
-                payload: newUser.data
+                type: ActionTypes.postUser,
+                payload: newUser.data,
             })
-        } catch (error: any) {
-            console.log(error.message)
+        } catch (error) {
+            console.error('ERROR: ', error);
         }
     }
 };

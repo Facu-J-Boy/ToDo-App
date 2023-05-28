@@ -1,24 +1,27 @@
-import { GetUserAction } from "../Actions";
-import { ActionTypes } from "../Actions/Types";
+import { UserInterface } from "../Actions";
+import { Action, ActionTypes } from "../Actions/Types";
 
-interface User {
-    id: string,
-    email: string
-}
+// interface User {
+//     id: string,
+//     email: string
+// }
 
-interface state1 {
-    user: User | {}
-}
+// interface state1 {
+//     user: User | {}
+// }
 
-const initialState: state1 = {
-    user: {}
-   };
+// const initialState: state1 = {
+//     user: {}
+//    };
 
-export const userReducer = (state: User | null = null, action: GetUserAction) => {
+export const userReducer = (state: UserInterface | null = null, action: Action) => {
     switch (action.type) {
         case ActionTypes.getUser:
-            console.log('Payload: ', action.payload)
-            return action.payload;    
+            console.log('getUser: ', action.payload)
+            return action.payload;
+        case ActionTypes.postUser:
+            console.log('postUser: ', action.payload) 
+            return action.payload;   
         default:
             return state;
     }

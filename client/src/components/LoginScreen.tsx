@@ -20,20 +20,20 @@ const LoginScreen: React.FC<LoginScreenProps> = ({getUser, user}): JSX.Element =
     navigate('/user');
   }
 
-  const redirectToLoginScreen = () => {
-    navigate('/');
-  }
+  // const redirectToLoginScreen = () => {
+  //   navigate('/');
+  // }
 
   console.log('Estado global de user: ', user)
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        authenticated = true;
+        console.log('Usuario autenticado: ', user)
         getUser(user.uid);
       } else {
         console.log('Usuario no autenticado');
-        redirectToLoginScreen();
+        // redirectToLoginScreen();
         // authenticated = false;
       }
     });
@@ -46,11 +46,10 @@ const LoginScreen: React.FC<LoginScreenProps> = ({getUser, user}): JSX.Element =
     // !user? authenticated = false : authenticated = true 
   })
   
-  let authenticated: boolean = false
-  
   return (
     <div>
-      {!authenticated && !user? <LoginWithEmail /> : <Logo />}        
+       <LoginWithEmail />
+       <Logo />        
     </div>
   )
 }

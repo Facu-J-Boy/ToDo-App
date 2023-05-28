@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import LogoSmall from './LogoSmall';
 import LoginWithGoogle from './LoginWithGoogle';
@@ -23,7 +23,8 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
     };
 
 
-  const handleLogin = async () => {
+  const handleLogin = async (ev: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
     try {
         const auth = getAuth();
         console.log('Usuario: ', auth);
@@ -65,7 +66,7 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Sign in to your account
                 </h1>
-                <form className="space-y-4 md:space-y-6" action="#" noValidate>
+                <form className="space-y-4 md:space-y-6" action="#" noValidate onSubmit={(ev) => handleLogin(ev)}>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                         <input 
@@ -117,9 +118,9 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
                       </button>
                         {passwordError && <p className="text-red font-medium">Min 6 characters.</p>}
                     </div>
-                    <button type="submit" 
+                    <button type='submit' 
                     className="w-full text-white bg-lightGreen focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                    onClick={handleLogin}
+                    onClick={(ev) => handleLogin(ev)}
                     disabled={isDisabled}
                     >
                       Sign in

@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import LogoSmall from './LogoSmall';
+import { auth } from '../Firebase';
 
 const SignUpWithEmail: React.FC = (): JSX.Element => {
 
@@ -9,6 +10,16 @@ const SignUpWithEmail: React.FC = (): JSX.Element => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
+    useEffect(() => {
+          auth.onAuthStateChanged((user) => {
+            user ?
+            console.log('Usuario autenticado:', user)
+            :
+            console.log('Usuario no autenticado ', user);
+        })
+        }, []);
+        
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(event.target.value);
@@ -37,10 +48,12 @@ const SignUpWithEmail: React.FC = (): JSX.Element => {
     setShowPassword(!showPassword);
   };
 
-    const handleSignUp = async () => {
+    const handleSignUp = async (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      ev.preventDefault();
         try {
-            const auth = getAuth();
-            await createUserWithEmailAndPassword(auth, email, password);
+          const auth = getAuth();
+          await createUserWithEmailAndPassword(auth, email, password);
+            
             console.log('Usuario creado exitosamente');
             // Aquí puedes redirigir al usuario a la página deseada después de la creación exitosa del usuario
         } catch (error) {
@@ -113,7 +126,7 @@ const SignUpWithEmail: React.FC = (): JSX.Element => {
                     </div>
                     <button type="submit" 
                     className="w-full text-white bg-lightGreen focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                    onClick={handleSignUp}
+                    onClick={(ev) => handleSignUp(ev)}
                     disabled={isDisabled}
                     >
                       Sign up

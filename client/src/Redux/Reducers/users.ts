@@ -16,11 +16,8 @@ import { Action, ActionTypes } from "../Actions/Types";
 
 export const userReducer = (state: UserInterface | null = null, action: Action) => {
     switch (action.type) {
-        case ActionTypes.getUser:
+        case ActionTypes.findOrCreateUser:
             console.log('getUser: ', action.payload)
-            return action.payload;
-        case ActionTypes.postUser:
-            console.log('postUser: ', action.payload) 
             return action.payload;   
         default:
             return state;

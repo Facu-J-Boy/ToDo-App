@@ -2,17 +2,17 @@ import React, {useEffect} from 'react';
 import LoginWithEmail from './LoginWithEmail';
 import Logo from './Logo';
 import { auth } from '../Firebase';
-import { UserInterface, getUser } from '../Redux/Actions';
+import { UserInterface, findOrCreateUser } from '../Redux/Actions';
 import { connect } from 'react-redux';
 import { StoreState } from '../Redux/Reducers';
 import { useNavigate } from 'react-router-dom';
 
 interface LoginScreenProps {
   user: UserInterface | {};
-  getUser(id: string): void;
+  findOrCreateUser(dates: UserInterface): void;
 }
 
-const LoginScreen: React.FC<LoginScreenProps> = ({getUser, user}): JSX.Element => {
+const LoginScreen: React.FC<LoginScreenProps> = ({findOrCreateUser, user}): JSX.Element => {
 
   const navigate = useNavigate()
 
@@ -30,7 +30,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({getUser, user}): JSX.Element =
     auth.onAuthStateChanged((user) => {
       if (user) {
         console.log('Usuario autenticado: ', user)
-        getUser(user.uid);
+        findOrCreateUser({id: user.uid, email: user.email});
       } else {
         console.log('Usuario no autenticado');
         // redirectToLoginScreen();
@@ -55,7 +55,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({getUser, user}): JSX.Element =
 }
 
 const mapDispatchToProps = {
-  getUser,
+  findOrCreateUser,
 }
 
 const mapStateToProps = (state: StoreState): {user: UserInterface | {}} => {

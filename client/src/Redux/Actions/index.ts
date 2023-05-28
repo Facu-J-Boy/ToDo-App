@@ -7,29 +7,29 @@ export const POST_USER = 'POST_USER';
 const url = "http://localhost:3001/api";
 
 export interface UserInterface {
-    id: string,
-    email: string
+    id: string | null,
+    email: string | null
 }
 
-export interface GetUserAction {
-    type: ActionTypes.getUser;
+export interface FindOrCreateUserAction {
+    type: ActionTypes.findOrCreateUser;
     payload: UserInterface | null;
 }
 
-export interface PostUserAction {
-    type: ActionTypes.postUser;
-    payload: UserInterface
-}
+// export interface PostUserAction {
+//     type: ActionTypes.postUser;
+//     payload: UserInterface
+// }
 
-export const getUser = (id: string) => {
+export const findOrCreateUser = (dates: UserInterface) => {
     console.log('getUser ejecutado')
-    return async (dispatch: Dispatch<GetUserAction>) => {
+    return async (dispatch: Dispatch<FindOrCreateUserAction>) => {
         try {
-            const response = await axios.get<UserInterface>(`http://localhost:3001/api/user/${id}`);
+            const response = await axios.post<UserInterface>(`${url}/user`, dates);
             if (response){console.log('response: ', response)}
             const user = !response.data? null : response.data;
             dispatch({
-                type: ActionTypes.getUser,
+                type: ActionTypes.findOrCreateUser,
                 payload: user,
             });
         } catch (error) {
@@ -38,16 +38,16 @@ export const getUser = (id: string) => {
     };
 };
 
-export const postUser = (date: any) => {
-    return async (dispatch: Dispatch<PostUserAction>) => {
-        try {
-            const newUser = await axios.post<UserInterface>(`${url}/user`, date);
-            return dispatch ({
-                type: ActionTypes.postUser,
-                payload: newUser.data,
-            })
-        } catch (error) {
-            console.error('ERROR: ', error);
-        }
-    }
-};
+// export const postUser = (date: any) => {
+//     return async (dispatch: Dispatch<PostUserAction>) => {
+//         try {
+//             const newUser = await axios.post<UserInterface>(`${url}/user`, date);
+//             return dispatch ({
+//                 type: ActionTypes.postUser,
+//                 payload: newUser.data,
+//             })
+//         } catch (error) {
+//             console.error('ERROR: ', error);
+//         }
+//     }
+// };

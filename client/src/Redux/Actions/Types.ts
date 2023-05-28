@@ -1,8 +1,7 @@
-import { GetUserAction, PostUserAction } from ".";
+import { FindOrCreateUserAction } from ".";
 
 export enum ActionTypes {
-    getUser = 'GET_USER',
-    postUser = 'POST_USER',
+    findOrCreateUser = 'GET_USER',
 }
 
-export type Action = GetUserAction | PostUserAction;
+export type Action = FindOrCreateUserAction

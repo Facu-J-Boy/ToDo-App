@@ -1,8 +1,13 @@
 import {Model, Column, Table, DataType, BelongsTo, ForeignKey} from 'sequelize-typescript';
 import { User } from './User';
 
+interface TodoAttributes {
+  id: string,
+  text: string
+}
+
 @Table({ tableName: 'todos', timestamps: false })
-export class ToDo extends Model<ToDo> {
+export class ToDo extends Model<TodoAttributes> {
     @Column({
         type: DataType.STRING,
         defaultValue: DataType.UUIDV4,

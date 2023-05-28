@@ -16,6 +16,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     const {id} = req.params;
     try {
         const user = await controller.getUser(id);
+        console.log(user)
         res.status(201).send(user);
     } catch (error: any) {
         res.status(404).send(error.message);

@@ -8,7 +8,7 @@ const App: React.FC = ():JSX.Element => {
   return (
     <>
     <Routes>
-      <Route path='/' element={<LoginScreen />} />
+      <Route path='/' element={<LoginScreen/>} />
       <Route path='/signup' element={<SignUpWithEmail />} />
       <Route path='/user' element={<User />} />
      </Routes>
@@ -16,4 +16,4 @@ const App: React.FC = ():JSX.Element => {
   )
 }
 
-export default App
+export default App;

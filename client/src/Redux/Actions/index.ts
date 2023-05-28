@@ -1,34 +1,43 @@
 import axios from "axios";
 import { Dispatch } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { ActionTypes } from "./Types";
 
 export const POST_USER = 'POST_USER';
-export const GET_USER = 'GET_USER';
 
 const url = "http://localhost:3001/api";
 
-interface User {
+export interface UserInterface {
     id: string,
     email: string
 }
 
+export interface GetUserAction {
+    type: ActionTypes.getUser;
+    payload: UserInterface | null;
+}
+
 export const getUser = (id: string) => {
-    return async (dispatch: Dispatch) => {
+    console.log('getUser ejecutado')
+    return async (dispatch: Dispatch<GetUserAction>) => {
         try {
-            const user = await axios.get <User | null>(`${url}/user/${id}`);
-            return dispatch ({
-                type: GET_USER,
-                payload: user.data,
-            })
+            const response = await axios.get<UserInterface>(`http://localhost:3001/api/user/${id}`);
+            if (response){console.log('response: ', response)}
+            const user = response.data;
+            dispatch({
+                type: ActionTypes.getUser,
+                payload: user,
+            });
         } catch (error) {
-            
+            console.error('Error:', error);
         }
-    }
+    };
 };
 
 export const postUser = (date: any) => {
     return async (dispatch: Dispatch) => {
         try {
-            const newUser = await axios.post <User>(`${url}/user`, date);
+            const newUser = await axios.post<UserInterface>(`${url}/user`, date);
             return dispatch ({
                 type: POST_USER,
                 payload: newUser.data

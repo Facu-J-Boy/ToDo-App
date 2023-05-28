@@ -1,5 +1,16 @@
 import {sequelize} from './src/db';
 import app from './src/app';
+import cors from 'cors';
+
+// app.use(
+//     cors({
+//      origin: 'http://localhost:3000',
+//      credentials: true,
+//      methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
+//      allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+//     })
+//    );
+
 sequelize
  .sync({force: true, logging: false})
  .then(() => {

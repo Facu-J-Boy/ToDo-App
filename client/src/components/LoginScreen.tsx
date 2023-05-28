@@ -2,22 +2,25 @@ import React, {useEffect} from 'react';
 import LoginWithEmail from './LoginWithEmail';
 import Logo from './Logo';
 import { auth } from '../Firebase';
-import { useDispatch } from 'react-redux';
+import { UserInterface, getUser } from '../Redux/Actions';
+import { connect } from 'react-redux';
+import { StoreState } from '../Redux/Reducers';
 
-const LoginScreen = () => {
+interface LoginScreenProps {
+  user: UserInterface | {};
+  getUser(id: string): void;
+}
 
-  const dispatch = useDispatch()
+const LoginScreen: React.FC<LoginScreenProps> = ({getUser}): JSX.Element => {
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      user?
-      console.log('Usuario autenticado:', user)
-
-      :
-      console.log('Usuario no autenticado');
-    }
-    );
-    return () => unsubscribe();
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        getUser(user.uid);
+      } else {
+        console.log('Usuario no autenticado');
+      }
+    });
   }, []);
   
   return (
@@ -28,4 +31,14 @@ const LoginScreen = () => {
   )
 }
 
-export default LoginScreen
+const mapDispatchToProps = {
+  getUser,
+}
+
+const mapStateToProps = (state: StoreState): {user: UserInterface | {}} => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

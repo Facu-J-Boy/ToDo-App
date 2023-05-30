@@ -13,7 +13,12 @@ export interface UserInterface {
 
 export interface FindOrCreateUserAction {
     type: ActionTypes.findOrCreateUser;
-    payload: UserInterface | null;
+    payload: UserInterface 
+}
+
+export interface UserUndefinedAction {
+    type: ActionTypes.userUndefined;
+    payload: {}
 }
 
 // export interface PostUserAction {
@@ -27,7 +32,7 @@ export const findOrCreateUser = (dates: UserInterface) => {
         try {
             const response = await axios.post<UserInterface>(`${url}/user`, dates);
             if (response){console.log('response: ', response)}
-            const user = !response.data? null : response.data;
+            const user = response.data
             dispatch({
                 type: ActionTypes.findOrCreateUser,
                 payload: user,
@@ -37,6 +42,13 @@ export const findOrCreateUser = (dates: UserInterface) => {
         }
     };
 };
+
+export const userUndefined = (): UserUndefinedAction => {
+    return {
+        type: ActionTypes.userUndefined,
+        payload: {}
+    }
+}
 
 // export const postUser = (date: any) => {
 //     return async (dispatch: Dispatch<PostUserAction>) => {

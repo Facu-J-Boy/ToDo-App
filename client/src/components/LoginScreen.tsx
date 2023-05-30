@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import LoginWithEmail from './LoginWithEmail';
-import Logo from './Logo';
 import { auth } from '../Firebase';
 import { UserInterface, findOrCreateUser } from '../Redux/Actions';
 import { connect } from 'react-redux';
 import { StoreState } from '../Redux/Reducers';
-import { useNavigate } from 'react-router-dom';
+// import { redirect } from './Redirect';
+// import { useNavigate } from 'react-router-dom';
 
 interface LoginScreenProps {
   user: UserInterface | {};
@@ -14,15 +14,7 @@ interface LoginScreenProps {
 
 const LoginScreen: React.FC<LoginScreenProps> = ({findOrCreateUser, user}): JSX.Element => {
 
-  const navigate = useNavigate()
-
-  const redirectToUser = () => {
-    navigate('/user');
-  }
-
-  // const redirectToLoginScreen = () => {
-  //   navigate('/');
-  // }
+  // const navigate = useNavigate()
 
   console.log('Estado global de user: ', user)
 
@@ -39,17 +31,16 @@ const LoginScreen: React.FC<LoginScreenProps> = ({findOrCreateUser, user}): JSX.
     });
   }, []);
   
-  useEffect(() => {
-    if(user) {
-      redirectToUser()
-    }
-    // !user? authenticated = false : authenticated = true 
-  })
+  // useEffect(() => {
+  //   if(user) {
+  //     navigate('/user')
+  //   }
+  //   // !user? authenticated = false : authenticated = true 
+  // }, [])
   
   return (
     <div>
-       <LoginWithEmail />
-       <Logo />        
+       <LoginWithEmail />        
     </div>
   )
 }

@@ -14,11 +14,13 @@ import { Action, ActionTypes } from "../Actions/Types";
 //     user: {}
 //    };
 
-export const userReducer = (state: UserInterface | null = null, action: Action) => {
+export const userReducer = (state: UserInterface | {} = {}, action: Action) => {
     switch (action.type) {
         case ActionTypes.findOrCreateUser:
             console.log('getUser: ', action.payload)
-            return action.payload;   
+            return action.payload  
+        case ActionTypes.userUndefined:
+            return action.payload 
         default:
             return state;
     }

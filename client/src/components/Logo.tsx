@@ -1,6 +1,32 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react';
+import { UserInterface, findOrCreateUser, userUndefined} from '../Redux/Actions';
+import { auth } from '../Firebase';
+import { StoreState } from '../Redux/Reducers';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const Logo = () => {
+interface LogoProps {
+  user: UserInterface | {};
+  findOrCreateUser(dates: UserInterface): void;
+  userUndefined(): void
+}
+
+const Logo: React.FC<LogoProps> = ({user, findOrCreateUser, userUndefined}): JSX.Element => {
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if(user) {
+        findOrCreateUser({id: user.uid, email: user.email})
+        navigate('/user');
+    } else {
+      navigate('/login');
+    }
+    })
+  }, []);
+  
   return (
     <div className='flex justify-center items-center h-screen'>
         <p className={`inline text-9xl text-end font-bold`}>ToD</p>
@@ -9,4 +35,15 @@ const Logo = () => {
   )
 }
 
-export default Logo
+const mapDispatchToProps = {
+  findOrCreateUser,
+  userUndefined
+}
+
+const mapStateToProps = (state: StoreState): {user: UserInterface | {}} => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Logo);

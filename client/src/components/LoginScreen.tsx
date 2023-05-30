@@ -4,8 +4,7 @@ import { auth } from '../Firebase';
 import { UserInterface, findOrCreateUser } from '../Redux/Actions';
 import { connect } from 'react-redux';
 import { StoreState } from '../Redux/Reducers';
-// import { redirect } from './Redirect';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginScreenProps {
   user: UserInterface | {};
@@ -14,20 +13,13 @@ interface LoginScreenProps {
 
 const LoginScreen: React.FC<LoginScreenProps> = ({findOrCreateUser, user}): JSX.Element => {
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   console.log('Estado global de user: ', user)
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log('Usuario autenticado: ', user)
-        findOrCreateUser({id: user.uid, email: user.email});
-      } else {
-        console.log('Usuario no autenticado');
-        // redirectToLoginScreen();
-        // authenticated = false;
-      }
+      user? navigate('/') : null      
     });
   }, []);
   

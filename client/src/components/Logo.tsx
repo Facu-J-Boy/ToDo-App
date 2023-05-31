@@ -16,15 +16,19 @@ const Logo: React.FC<LogoProps> = ({user, findOrCreateUser, userUndefined}): JSX
 
   const navigate = useNavigate()
 
-  useEffect(() => {
+  const reedUser = () => {
     auth.onAuthStateChanged((user) => {
       if(user) {
         findOrCreateUser({id: user.uid, email: user.email})
         navigate('/user');
     } else {
-      navigate('/login');
+        navigate('/login');
     }
     })
+  }
+
+  useEffect(() => {
+    setTimeout(reedUser, 3000);
   }, []);
   
   return (

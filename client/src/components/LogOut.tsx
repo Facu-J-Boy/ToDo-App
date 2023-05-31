@@ -1,11 +1,34 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { getAuth, signOut } from 'firebase/auth';
+import { UserInterface, userUndefined } from '../Redux/Actions';
+import { StoreState } from '../Redux/Reducers';
+import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const LogOut: React.FC = (): JSX.Element => {
+interface LogOutProps {
+  user: UserInterface | {};
+  userUndefined(): void
+}
+
+const LogOut: React.FC<LogOutProps> = ({userUndefined, user}): JSX.Element => {
+
+  const [globalUser, setGlobalUser] = useState(true);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    !user? setGlobalUser(false) : setGlobalUser(true)
+  })
+
+  useEffect(() => {
+    !globalUser? navigate('/') : null
+  }, [globalUser])
+
     const handleLogout = async () => {
         try {
           const auth = getAuth();
           await signOut(auth);
+          userUndefined()
           // Cierre de sesión exitoso
           console.log('Cierre de sesión exitoso');
           // Realiza las acciones correspondientes al cierre de sesión exitoso
@@ -22,4 +45,14 @@ const LogOut: React.FC = (): JSX.Element => {
       );
 }
 
-export default LogOut
+const mapDispatchToProps = {
+  userUndefined,
+}
+
+const mapStateToProps = (state: StoreState): {user: UserInterface | {}} => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogOut)

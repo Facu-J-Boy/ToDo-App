@@ -18,7 +18,6 @@ export interface FindOrCreateUserAction {
 
 export interface UserUndefinedAction {
     type: ActionTypes.userUndefined;
-    payload: {}
 }
 
 // export interface PostUserAction {
@@ -44,9 +43,9 @@ export const findOrCreateUser = (dates: UserInterface) => {
 };
 
 export const userUndefined = (): UserUndefinedAction => {
+    console.log('userUndefined ejecutado')
     return {
-        type: ActionTypes.userUndefined,
-        payload: {}
+        type: ActionTypes.userUndefined
     }
 }
 

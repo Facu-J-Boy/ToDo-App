@@ -20,7 +20,8 @@ export const userReducer = (state: UserInterface | {} = {}, action: Action) => {
             console.log('getUser: ', action.payload)
             return action.payload  
         case ActionTypes.userUndefined:
-            return action.payload 
+            console.log('state: ', state)
+            return {} 
         default:
             return state;
     }

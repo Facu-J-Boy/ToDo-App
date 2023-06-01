@@ -12,23 +12,16 @@ interface LogOutProps {
 
 const LogOut: React.FC<LogOutProps> = ({userUndefined, user}): JSX.Element => {
 
-  const [globalUser, setGlobalUser] = useState(true);
+  // const [globalUser, setGlobalUser] = useState(true);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    !user? setGlobalUser(false) : setGlobalUser(true)
-  })
-
-  useEffect(() => {
-    !globalUser? navigate('/') : null
-  }, [globalUser])
-
+  
     const handleLogout = async () => {
         try {
           const auth = getAuth();
           await signOut(auth);
-          userUndefined()
+          userUndefined();
+          navigate('/')
           // Cierre de sesión exitoso
           console.log('Cierre de sesión exitoso');
           // Realiza las acciones correspondientes al cierre de sesión exitoso
@@ -38,6 +31,14 @@ const LogOut: React.FC<LogOutProps> = ({userUndefined, user}): JSX.Element => {
           // Realiza las acciones correspondientes al error de cierre de sesión
         }
       };
+
+      // useEffect(() => {
+      //   !user? setGlobalUser(false) : setGlobalUser(true)
+      // })
+    
+      // useEffect(() => {
+      //   !globalUser? navigate('/') : null
+      // }, [globalUser])
     
       return (
         <button className='right-0 absolute mr-5 bg-green p-2 mb-2 rounded-sm text-white'

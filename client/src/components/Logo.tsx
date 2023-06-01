@@ -32,7 +32,7 @@ const Logo: React.FC<LogoProps> = ({user, findOrCreateUser, userUndefined}): JSX
   
   return (
     <div className='flex justify-center items-center h-screen'>
-        <img className="w-50" src='https://res.cloudinary.com/dvqh0exq6/image/upload/v1685649063/ToDo/Captura_de_pantalla_2023-06-01_164509-removebg-preview_jikdtx.png' />
+        <img className="w-50" src={process.env.REACT_APP_LOGO} />
     </div>
   )
 }

@@ -32,6 +32,14 @@ export interface GetToDoAction {
     payload: ToDoInterface[]
 }
 
+interface NewToDo {
+    id: string,
+    dates: {
+        text: string,
+        userId: string
+    }
+}
+
 export const findOrCreateUser = (dates: UserInterface | {}) => {
     console.log('getUser ejecutado')
     return async (dispatch: Dispatch<FindOrCreateUserAction>) => {
@@ -68,4 +76,14 @@ export const getToDos = (id: string) => {
             console.error('Error: ', error)
         }
     }
+}
+
+export const postToDo = async (dates: NewToDo) => {
+    // return async (dispatch: Dispatch) => {
+        try {
+            await axios.post(`${url}/todo`, dates);
+        } catch (error) {
+            console.error('Error: ', error);
+        }
+    // }
 }

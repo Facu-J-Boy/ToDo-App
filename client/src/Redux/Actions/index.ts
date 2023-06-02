@@ -11,6 +11,13 @@ export interface UserInterface {
     email: string | null
 }
 
+export interface ToDoInterface {
+    id: string,
+    text: string,
+    order: number,
+    userId: string
+}
+
 export interface FindOrCreateUserAction {
     type: ActionTypes.findOrCreateUser;
     payload: UserInterface 
@@ -20,10 +27,10 @@ export interface UserUndefinedAction {
     type: ActionTypes.userUndefined;
 }
 
-// export interface PostUserAction {
-//     type: ActionTypes.postUser;
-//     payload: UserInterface
-// }
+export interface GetToDoAction {
+    type: ActionTypes.getToDos;
+    payload: ToDoInterface[]
+}
 
 export const findOrCreateUser = (dates: UserInterface) => {
     console.log('getUser ejecutado')
@@ -49,16 +56,16 @@ export const userUndefined = (): UserUndefinedAction => {
     }
 }
 
-// export const postUser = (date: any) => {
-//     return async (dispatch: Dispatch<PostUserAction>) => {
-//         try {
-//             const newUser = await axios.post<UserInterface>(`${url}/user`, date);
-//             return dispatch ({
-//                 type: ActionTypes.postUser,
-//                 payload: newUser.data,
-//             })
-//         } catch (error) {
-//             console.error('ERROR: ', error);
-//         }
-//     }
-// };
+export const getToDos = (id: string) => {
+    return async (dispatch: Dispatch<GetToDoAction>) => {
+        try {
+            const response = await axios.get<ToDoInterface[]>(`${url}/todo/${id}`);
+            dispatch({
+                type: ActionTypes.getToDos,
+                payload: response.data,
+            })
+        } catch (error) {
+            console.error('Error: ', error)
+        }
+    }
+}

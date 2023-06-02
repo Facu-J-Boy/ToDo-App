@@ -1,6 +1,10 @@
 import React from 'react';
 
-const ToDo = () => {
+interface ToDoProps {
+  text: string
+}
+
+const ToDo: React.FC<ToDoProps> = ({text}): JSX.Element => {
   return (
     <div className="bg-green block my-5 w-9/12 break-words">
         <div className="flex justify-end">
@@ -22,7 +26,7 @@ const ToDo = () => {
            </svg>
         </div>
       <p className="text-left text-white  text-2xl p-5">
-          aprender payton
+          {text}
       </p>
     </div>
   )

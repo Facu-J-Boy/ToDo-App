@@ -23,13 +23,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({findOrCreateUser, user}): JSX.
     });
   }, []);
   
-  // useEffect(() => {
-  //   if(user) {
-  //     navigate('/user')
-  //   }
-  //   // !user? authenticated = false : authenticated = true 
-  // }, [])
-  
   return (
     <div>
        <LoginWithEmail />        

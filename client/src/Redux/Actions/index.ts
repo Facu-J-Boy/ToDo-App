@@ -32,7 +32,7 @@ export interface GetToDoAction {
     payload: ToDoInterface[]
 }
 
-export const findOrCreateUser = (dates: UserInterface) => {
+export const findOrCreateUser = (dates: UserInterface | {}) => {
     console.log('getUser ejecutado')
     return async (dispatch: Dispatch<FindOrCreateUserAction>) => {
         try {

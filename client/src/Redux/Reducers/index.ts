@@ -1,12 +1,15 @@
 import { combineReducers } from "redux";
 import { userReducer } from "./users";
-import { UserInterface } from "../Actions";
+import { ToDoInterface, UserInterface } from "../Actions";
+import { todoReducer } from "./todos";
 
 export interface StoreState {
     user: UserInterface | {};
+    todos: ToDoInterface[] | [];
     [key: string]: any;
 }
    
    export const reducers = combineReducers <StoreState >({
-    user: userReducer
+    user: userReducer,
+    todos: todoReducer,
    });

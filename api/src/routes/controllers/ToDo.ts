@@ -1,8 +1,6 @@
-import { CreateOptions } from "sequelize";
 import { ToDo } from "../../models/ToDo";
 import { User } from "../../models/User";
 import { NullishPropertiesOf } from "sequelize/types/utils";
-
 
 export const controller = {
 
@@ -14,22 +12,8 @@ export const controller = {
               return null;
             }
         
-            const lastOrderTodo = await ToDo.findOne({
-              where: {
-                userId: id
-              },
-              order: [['order', 'DESC']]
-            });
-        
-            let order = 1;
-        
-            if (lastOrderTodo) {
-              order = lastOrderTodo.order + 1;
-            }
-        
             const create: ToDo = await ToDo.create({
               ...dates,
-              order: order,
               userId: id
             });
         
@@ -45,9 +29,8 @@ export const controller = {
         try {
           const todos: ToDo[] = await ToDo.findAll({
             where: { userId: userId },
-            order: [['order', 'ASC']]
           });
-          return todos;
+          return todos.reverse();
         } catch (error) {
           console.error('ERROR: ', error);
           return [];

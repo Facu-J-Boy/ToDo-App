@@ -17,12 +17,6 @@ export class ToDo extends Model<ToDo> {
     })
     text!: string
 
-    @Column({
-      type: DataType.INTEGER,
-      allowNull: false
-    })
-    order!: number;
-
     @ForeignKey(() => User)
       @Column({
         type: DataType.STRING,

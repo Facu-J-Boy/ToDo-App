@@ -109,3 +109,14 @@ export const deleteToDo = (id: string) => {
         }
     }
 }
+
+export const updateToDo = (id: string, text: string) => {
+    console.log('updateToDo ejecutado')
+    return async (dispatch: Dispatch) => {
+        try {
+            await axios.put(`${url}/todo/update/${id}`, text);
+        } catch (error) {
+            console.error('Error: ', error);
+        }
+    }
+}

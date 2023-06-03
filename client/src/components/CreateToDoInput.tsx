@@ -50,6 +50,9 @@ const CreateToDoInput: React.FC<CreateToDoInputProps> = ({postToDo, getToDos}): 
   }
 
   const create = async (event: { key: string; }) => {
+    if (addToDo.dates.text.trim() === '') {
+    return;
+  }
     if (event.key === 'Enter') {
       await postToDo(addToDo);
       await getToDos(id);
@@ -64,6 +67,9 @@ const CreateToDoInput: React.FC<CreateToDoInputProps> = ({postToDo, getToDos}): 
   }
 
   const createWithButton = async() => {
+    if (addToDo.dates.text.trim() === '') {
+      return;
+    }
     await postToDo(addToDo);
     await getToDos(id);
     setAddToDo({

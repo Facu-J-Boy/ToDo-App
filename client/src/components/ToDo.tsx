@@ -1,10 +1,23 @@
 import React from 'react';
+import { deleteToDo, getToDos } from '../Redux/Actions/index';
+import { StoreState } from '../Redux/Reducers';
+import { connect } from 'react-redux';
 
 interface ToDoProps {
+  userId: string
+  id: string
   text: string
+  deleteToDo (id: string): void
+  getToDos (id: string): void
 }
 
-const ToDo: React.FC<ToDoProps> = ({text}): JSX.Element => {
+const ToDo: React.FC<ToDoProps> = ({userId, id, text, deleteToDo, getToDos}): JSX.Element => {
+
+  const check = async () => {
+    await deleteToDo(id);
+    await getToDos(userId);
+  }
+
   return (
     <div className="bg-green block my-5 w-9/12 break-words">
         <div className="flex justify-end">
@@ -16,14 +29,16 @@ const ToDo: React.FC<ToDoProps> = ({text}): JSX.Element => {
            className="w-10 h-10 stroke-white p-2 bg-greenHard cursor-pointer hover:bg-greenSoft">
              <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
            </svg>
-           <svg xmlns="http://www.w3.org/2000/svg" 
-           fill="none" 
-           viewBox="0 0 24 24" 
-           strokeWidth={1.5} 
-           stroke="currentColor" 
-           className="w-10 h-10 stroke-white p-2 bg-greenHard cursor-pointer hover:bg-greenSoft">
-             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-           </svg>
+           <button onClick={check}>
+              <svg xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              strokeWidth={1.5} 
+              stroke="currentColor" 
+              className="w-10 h-10 stroke-white p-2 bg-greenHard cursor-pointer hover:bg-greenSoft">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+           </button>
         </div>
       <p className="text-left text-white  text-2xl p-5">
           {text}
@@ -32,4 +47,15 @@ const ToDo: React.FC<ToDoProps> = ({text}): JSX.Element => {
   )
 }
 
-export default ToDo
+const mapDispatchToProps = {
+  getToDos,
+  deleteToDo
+};
+
+const mapStateToProps = (state: StoreState) => {
+  return {
+    todos: state.todos
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDo);

@@ -98,3 +98,14 @@ export const postToDo = (dates: NewToDo) => {
         }
     }
 }
+
+export const deleteToDo = (id: string) => {
+    console.log('deleteToDo ejecutado')
+    return async (dispatch: Dispatch) => {
+        try {            
+            await axios.delete(`${url}/todo/${id}`);
+        } catch (error) {
+            console.error('Error: ', error);
+        }
+    }
+}

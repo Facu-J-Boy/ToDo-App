@@ -5,12 +5,11 @@ import { StoreState } from '../Redux/Reducers';
 import { connect } from 'react-redux';
 
 interface CreateToDoInputProps {
-  todos: ToDoInterface[];
   postToDo(dates: NewToDo): void
   getToDos(id: string): void
 }
 
-const CreateToDoInput: React.FC<CreateToDoInputProps> = ({todos, postToDo, getToDos}): JSX.Element => {
+const CreateToDoInput: React.FC<CreateToDoInputProps> = ({postToDo, getToDos}): JSX.Element => {
 
   const [addToDo, setAddToDo] = useState({
       id: '',
@@ -20,8 +19,7 @@ const CreateToDoInput: React.FC<CreateToDoInputProps> = ({todos, postToDo, getTo
     }
   });
 
-  const [id, setId] = useState('')
-
+  const [id, setId] = useState('');
   
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -51,11 +49,9 @@ const CreateToDoInput: React.FC<CreateToDoInputProps> = ({todos, postToDo, getTo
     })
   }
 
-  const create = () => {
-      postToDo(addToDo);
-      getToDos(id);
-      getToDos(id);
-      getToDos(id);
+  const create = async () => {
+      await postToDo(addToDo);
+      await getToDos(id);
   }
 
   return (

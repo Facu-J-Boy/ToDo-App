@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import ToDo from './ToDo';
 import { ToDoInterface, UserInterface, getToDos } from '../Redux/Actions';
 import { StoreState } from '../Redux/Reducers';
@@ -13,9 +13,14 @@ interface ToDoListProps {
 
 const ToDoList: React.FC<ToDoListProps> = ({todos, getToDos}): JSX.Element => {
 
+  const [userId, setUserId] = useState('');
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      user? getToDos(user.uid) : null;
+      if (user) {
+        getToDos(user.uid);
+        setUserId(user.uid);
+      };
     })
   }, [])
   
@@ -25,7 +30,11 @@ const ToDoList: React.FC<ToDoListProps> = ({todos, getToDos}): JSX.Element => {
        <CreateToDoInput />
     </div>
        <div className="flex flex-col items-center">
-        {todos?.map((el) => <ToDo key={el.id} text={el.text} />)}
+        {todos?.map((el) => <ToDo 
+        key={el.id} 
+        userId={userId}
+        id={el.id} 
+        text={el.text} />)}
        </div>
     </>
   )

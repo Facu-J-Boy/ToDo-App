@@ -91,6 +91,7 @@ const CreateToDoInput: React.FC<CreateToDoInputProps> = ({postToDo, getToDos}): 
         onKeyDown={create}
         className="rounded-l-md border-t border-b border-l text-gray-800 py-2 px-4 focus:outline-none focus:border-blue-500" 
         placeholder='Add to the list'
+        autoComplete='off'
         />
         <button 
         onClick={createWithButton}

@@ -25,7 +25,7 @@ const ToDoList: React.FC<ToDoListProps> = ({todos, getToDos}): JSX.Element => {
        <CreateToDoInput />
     </div>
        <div className="flex flex-col items-center">
-        {todos.map((el) => <ToDo key={el.id} text={el.text} />)}
+        {todos?.map((el) => <ToDo key={el.id} text={el.text} />)}
        </div>
     </>
   )

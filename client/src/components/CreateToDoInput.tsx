@@ -76,17 +76,24 @@ const CreateToDoInput: React.FC<CreateToDoInputProps> = ({postToDo, getToDos}): 
   }
 
   return (
-    <div>
+    <div className='flex mt-5'>
         <input 
         type='text' 
         name='text'
         value={addToDo.dates.text}
         onInput={handleInputChange}
         onKeyDown={create}
-        className="block w-full mt-5 rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" 
+        className="rounded-l-md border-t border-b border-l text-gray-800 py-2 px-4 focus:outline-none focus:border-blue-500" 
         placeholder='Add to the list'
         />
-        <button onClick={createWithButton}>Create</button>
+        <button 
+        onClick={createWithButton}
+        className="bg-lightGreen hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-r-md focus:outline-none"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
     </div>
   )
 }

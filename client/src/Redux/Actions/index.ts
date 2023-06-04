@@ -27,7 +27,7 @@ export interface UserUndefinedAction {
 
 export interface GetToDoAction {
     type: ActionTypes.getToDos;
-    payload: ToDoInterface[]
+    payload: ToDoInterface[] | [] | string
 }
 
 export interface PostToDoAction {

@@ -5,7 +5,7 @@ import { todoReducer } from "./todos";
 
 export interface StoreState {
     user: UserInterface | {};
-    todos: ToDoInterface[] | [];
+    todos: ToDoInterface[] | string;
     [key: string]: any;
 }
    

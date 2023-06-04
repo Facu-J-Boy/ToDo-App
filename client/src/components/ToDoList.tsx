@@ -8,7 +8,7 @@ import CreateToDoInput from './CreateToDoInput';
 import ScrollTop from './ScrollTop';
 
 interface ToDoListProps {
-  todos: ToDoInterface[] | [],
+  todos: ToDoInterface[] | string,
   getToDos(id: string): void
 }
 
@@ -31,22 +31,27 @@ const ToDoList: React.FC<ToDoListProps> = ({todos, getToDos}): JSX.Element => {
        <CreateToDoInput />
     </div>
        <div className="flex flex-col items-center">
-        {todos?.map((el) => <ToDo 
+        {Array.isArray(todos)? todos.map((el) => <ToDo 
         key={el.id} 
         userId={userId}
         id={el.id} 
-        text={el.text} />)}
+        text={el.text} />)
+      :
+      <p className='mt-10 text-2xl font-sans font-bold text-grey'>
+        {todos}
+      </p>
+        }
        </div>
        <ScrollTop />
     </>
   )
-}
+        }
 
 const mapDispatchToProps = {
   getToDos,
 }
 
-const mapStateToProps = (state: StoreState): {todos: ToDoInterface[] | [] } => {
+const mapStateToProps = (state: StoreState): {todos: ToDoInterface[] | string } => {
   return {
     todos: state.todos
   };

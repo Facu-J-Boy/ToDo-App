@@ -2,9 +2,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { ActionTypes } from "./Types";
 
-export const POST_USER = 'POST_USER';
-
-const url = "http://localhost:3001/api";
+axios.defaults.baseURL = "http://localhost:3001/api";
 
 export interface UserInterface {
     id: string | null,
@@ -49,7 +47,7 @@ export const findOrCreateUser = (dates: UserInterface | {}) => {
     console.log('getUser ejecutado')
     return async (dispatch: Dispatch<FindOrCreateUserAction>) => {
         try {
-            const response = await axios.post<UserInterface>(`${url}/user`, dates);
+            const response = await axios.post<UserInterface>("/user", dates);
             if (response){console.log('response: ', response)}
             const user = response.data
             dispatch({
@@ -73,7 +71,7 @@ export const getToDos = (id: string) => {
     console.log('getTodos ejecutado');
     return async (dispatch: Dispatch<GetToDoAction>) => {
         try {
-            const response = await axios.get<ToDoInterface[]>(`${url}/todo/${id}`);
+            const response = await axios.get<ToDoInterface[]>(`/todo/${id}`);
             dispatch({
                 type: ActionTypes.getToDos,
                 payload: response.data,
@@ -88,7 +86,7 @@ export const postToDo = (dates: NewToDo) => {
     console.log('postTodo ejecutado');
     return async (dispatch: Dispatch<PostToDoAction>) => {
         try {
-            const response = await axios.post<ToDoInterface>(`${url}/todo`, dates);
+            const response = await axios.post<ToDoInterface>("/todo", dates);
             dispatch({
                 type: ActionTypes.postToDo,
                 payload: response.data
@@ -103,7 +101,7 @@ export const deleteToDo = (id: string) => {
     console.log('deleteToDo ejecutado')
     return async (dispatch: Dispatch) => {
         try {            
-            await axios.delete(`${url}/todo/${id}`);
+            await axios.delete(`/todo/${id}`);
         } catch (error) {
             console.error('Error: ', error);
         }
@@ -114,7 +112,7 @@ export const updateToDo = (id: string, text:{text: string}) => {
     console.log('updateToDo ejecutado')
     return async (dispatch: Dispatch) => {
         try {
-            await axios.put(`${url}/todo/update/${id}`, text);
+            await axios.put(`/todo/update/${id}`, text);
         } catch (error) {
             console.error('Error: ', error);
         }

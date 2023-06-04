@@ -110,7 +110,7 @@ export const deleteToDo = (id: string) => {
     }
 }
 
-export const updateToDo = (id: string, text: string) => {
+export const updateToDo = (id: string, text:{text: string}) => {
     console.log('updateToDo ejecutado')
     return async (dispatch: Dispatch) => {
         try {

@@ -11,9 +11,23 @@ export const controller = {
               console.log('Usuario no encontrado');
               return null;
             }
+
+             const lastOrderTodo = await ToDo.findOne({
+              where: {
+                userId: id
+              },
+              order: [['order', 'DESC']]
+            });
+
+            let order = 1;
+
+            if (lastOrderTodo) {
+              order = lastOrderTodo.order + 1;
+            }
         
             const create: ToDo = await ToDo.create({
               ...dates,
+              order: order,
               userId: id
             });
         
@@ -29,8 +43,9 @@ export const controller = {
         try {
           const todos: ToDo[] = await ToDo.findAll({
             where: { userId: userId },
+            order: [['order', 'DESC']]
           });
-          return todos.reverse();
+          return todos;
         } catch (error) {
           console.error('ERROR: ', error);
           return [];

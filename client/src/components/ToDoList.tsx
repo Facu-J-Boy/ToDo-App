@@ -5,6 +5,7 @@ import { StoreState } from '../Redux/Reducers';
 import { connect } from 'react-redux';
 import { auth } from '../Firebase';
 import CreateToDoInput from './CreateToDoInput';
+import ScrollTop from './ScrollTop';
 
 interface ToDoListProps {
   todos: ToDoInterface[] | [],
@@ -36,6 +37,7 @@ const ToDoList: React.FC<ToDoListProps> = ({todos, getToDos}): JSX.Element => {
         id={el.id} 
         text={el.text} />)}
        </div>
+       <ScrollTop />
     </>
   )
 }

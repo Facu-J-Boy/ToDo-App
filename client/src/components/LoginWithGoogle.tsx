@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { auth, provider } from '../Firebase';
 import { signInWithRedirect, getRedirectResult } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -6,24 +6,12 @@ import { useNavigate } from 'react-router-dom';
 const LoginWithGoogle: React.FC = (): JSX.Element => {
 
   const navigate = useNavigate();
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-          user?
-            console.log('Usuario autenticado:', user)
-          :
-            console.log('Usuario no autenticado');
-          }
-        );
-        return () => unsubscribe();
-      }, []);
       
     const handleSignInWithGoogle = async () => {
       try {
             navigate('/');
             await signInWithRedirect(auth, provider);
             await getRedirectResult(auth);
-            // console.log('Resultado de la redirección:', result);
         } catch (error) {
             console.error(error);
         }

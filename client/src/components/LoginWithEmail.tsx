@@ -27,15 +27,9 @@ const LoginWithEmail: React.FC = (): JSX.Element => {
     ev.preventDefault();
     try {
         const auth = getAuth();
-        console.log('Usuario: ', auth);
         await signInWithEmailAndPassword(auth, email, password);
-      // El inicio de sesión fue exitoso
-      console.log('Inicio de sesión exitoso');
-      // Realiza las acciones correspondientes al inicio de sesión exitoso
     } catch (error) {
-      // Ocurrió un error durante el inicio de sesión
-      console.error('Error de inicio de sesión:', error);
-      // Realiza las acciones correspondientes al error de inicio de sesión
+      console.error('Error: ', error);
     }
   };
 

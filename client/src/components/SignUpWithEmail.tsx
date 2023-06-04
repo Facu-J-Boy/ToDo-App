@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import LogoSmall from './LogoSmall';
-import { auth } from '../Firebase';
 
 const SignUpWithEmail: React.FC = (): JSX.Element => {
 
@@ -10,15 +9,6 @@ const SignUpWithEmail: React.FC = (): JSX.Element => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
-    useEffect(() => {
-          auth.onAuthStateChanged((user) => {
-            user ?
-            console.log('Usuario autenticado:', user)
-            :
-            console.log('Usuario no autenticado ', user);
-        })
-        }, []);
         
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,11 +43,8 @@ const SignUpWithEmail: React.FC = (): JSX.Element => {
         try {
           const auth = getAuth();
           await createUserWithEmailAndPassword(auth, email, password);
-            
-            console.log('Usuario creado exitosamente');
-            // Aquí puedes redirigir al usuario a la página deseada después de la creación exitosa del usuario
         } catch (error) {
-            console.log('Error al crear el usuario:', error);
+            console.error('Error: ', error);
             // Maneja el error de creación de usuario según tus necesidades
         };
     }

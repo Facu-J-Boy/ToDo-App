@@ -38,8 +38,6 @@ const CreateToDoInput: React.FC<CreateToDoInputProps> = ({postToDo, getToDos}): 
   }, []);
   
   const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(addToDo)
-    console.log('value: ', ev.target.value)
     setAddToDo({
       ...addToDo,
       dates: {

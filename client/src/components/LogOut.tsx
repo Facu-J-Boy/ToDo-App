@@ -19,8 +19,7 @@ const LogOut: React.FC<LogOutProps> = ({userUndefined, user}): JSX.Element => {
           const auth = getAuth();
           await signOut(auth);
           userUndefined();
-          navigate('/')
-          console.log('Cierre de sesión exitoso');
+          navigate('/');
         } catch (error) {
           console.error('Error de cierre de sesión:', error);
         }

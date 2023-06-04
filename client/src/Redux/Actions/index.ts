@@ -44,11 +44,9 @@ export interface NewToDo {
 }
 
 export const findOrCreateUser = (dates: UserInterface | {}) => {
-    console.log('getUser ejecutado')
     return async (dispatch: Dispatch<FindOrCreateUserAction>) => {
         try {
             const response = await axios.post<UserInterface>("/user", dates);
-            if (response){console.log('response: ', response)}
             const user = response.data
             dispatch({
                 type: ActionTypes.findOrCreateUser,
@@ -61,14 +59,12 @@ export const findOrCreateUser = (dates: UserInterface | {}) => {
 };
 
 export const userUndefined = (): UserUndefinedAction => {
-    console.log('userUndefined ejecutado')
     return {
         type: ActionTypes.userUndefined
     }
 }
 
 export const getToDos = (id: string) => {
-    console.log('getTodos ejecutado');
     return async (dispatch: Dispatch<GetToDoAction>) => {
         try {
             const response = await axios.get<ToDoInterface[]>(`/todo/${id}`);
@@ -83,7 +79,6 @@ export const getToDos = (id: string) => {
 }
 
 export const postToDo = (dates: NewToDo) => {
-    console.log('postTodo ejecutado');
     return async (dispatch: Dispatch<PostToDoAction>) => {
         try {
             const response = await axios.post<ToDoInterface>("/todo", dates);
@@ -98,7 +93,6 @@ export const postToDo = (dates: NewToDo) => {
 }
 
 export const deleteToDo = (id: string) => {
-    console.log('deleteToDo ejecutado')
     return async (dispatch: Dispatch) => {
         try {            
             await axios.delete(`/todo/${id}`);
@@ -109,7 +103,6 @@ export const deleteToDo = (id: string) => {
 }
 
 export const updateToDo = (id: string, text:{text: string}) => {
-    console.log('updateToDo ejecutado')
     return async (dispatch: Dispatch) => {
         try {
             await axios.put(`/todo/update/${id}`, text);

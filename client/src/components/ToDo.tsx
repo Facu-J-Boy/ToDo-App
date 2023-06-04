@@ -20,7 +20,7 @@ const ToDo: React.FC<ToDoProps> = ({userId, id, text, deleteToDo, getToDos, upda
       await updateToDo(id, {text: date});
       await getToDos(userId);
     } catch (error) {
-      console.log('Error: ', error)
+      console.error('Error: ', error)
     }
   };
 

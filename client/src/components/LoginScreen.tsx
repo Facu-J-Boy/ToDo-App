@@ -15,8 +15,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({findOrCreateUser, user}): JSX.
 
   const navigate = useNavigate()
 
-  console.log('Estado global de user: ', user)
-
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       user? navigate('/') : null      

@@ -7,6 +7,9 @@ router.get('/:id', async (req: Request, res: Response) => {
     const {id} = req.params
     try {
         const todos = await controller.getTodosByUser(id);
+        todos.length === 0?
+        res.status(201).end('Your list is empty')
+        :
         res.status(201).send(todos);
     } catch (error: any) {
         res.status(404).send(error.message);        

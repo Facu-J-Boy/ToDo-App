@@ -9,9 +9,8 @@ const config = {
  dbName: process.env.DB_NAME,
  dbPort: process.env.DB_PORT,
  dev: process.env.NODE_ENV !== 'production',
- port: process.env.API_PORT,
- host: process.env.API_host,
- cors: process.env.CORS,
+//  port: process.env.API_PORT,
+//  host: process.env.API_HOST,
 };
 
 export default config;

@@ -2,7 +2,6 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, {Application, Request, Response, NextFunction} from 'express';
 import morgan from 'morgan';
-import config from './lib/config';
 import routes from './routes/index';
 import bodyParser from 'body-parser';
 //-----------------------------------
@@ -29,7 +28,7 @@ app.use((err: error, req: Request, res: Response, next: NextFunction) => {
 
 app.use(
  cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000'],
   credentials: true,
   methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],

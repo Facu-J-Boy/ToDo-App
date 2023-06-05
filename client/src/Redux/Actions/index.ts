@@ -2,7 +2,9 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { ActionTypes } from "./Types";
 
-axios.defaults.baseURL = "http://localhost:3001/api";
+// axios.defaults.baseURL = "http://localhost:3001/api";
+
+axios.defaults.baseURL = "to-do-app-five-nu.vercel.app"
 
 export interface UserInterface {
     id: string | null,

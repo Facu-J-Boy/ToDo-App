@@ -34,8 +34,5 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1"
-  },
-  "browser": {
-    "crypto": false
-}
+  }
 }

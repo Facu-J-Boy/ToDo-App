@@ -13,6 +13,10 @@
         {
             "src": "/api/todo",
             "dest": "./src/routes/index.ts"
-        }
+        },
+        {
+            "src": "/(.*)",
+            "dest": "index.ts"
+          }
     ]
 }

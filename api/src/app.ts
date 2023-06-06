@@ -1,3 +1,4 @@
+// import cookieParser from 'cookie-parser';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, {Application, Request, Response, NextFunction} from 'express';
@@ -28,7 +29,7 @@ app.use((err: error, req: Request, res: Response, next: NextFunction) => {
 
 app.use(
  cors({
-  origin: ['http://localhost:3000'],
+  origin: '*',
   credentials: true,
   methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],

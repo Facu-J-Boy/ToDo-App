@@ -8,7 +8,8 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.31.1",
     "sequelize-typescript": "^2.1.5",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vercel": "^30.1.2"
   },
   "name": "api",
   "version": "1.0.0",

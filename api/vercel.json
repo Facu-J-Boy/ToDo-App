@@ -8,11 +8,11 @@
     "routes": [
         {
             "src": "/api/user",
-            "dest": "./src/routes/user.ts"
+            "dest": "./src/routes/index.ts"
         },
         {
             "src": "/api/todo",
-            "dest": "./src/routes/toDo.ts"
+            "dest": "./src/routes/index.ts"
         }
     ]
 }

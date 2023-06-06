@@ -9,6 +9,7 @@ const {URL_DATABASE} = process.env;
 
 // export const sequelize = new Sequelize({
 //  dialect: 'postgres',
+// dialectModule: pg,
 //  database: config.dbName,
 //  password: config.dbPassword,
 //  username: config.dbUser,
@@ -17,10 +18,9 @@ const {URL_DATABASE} = process.env;
 // });
 
 
-const sequelize = new Sequelize (`${URL_DATABASE}`, {
+export const sequelize = new Sequelize (`${URL_DATABASE}`, {
     dialect: 'postgres',
-    dialectModule: pg
+    // dialectModule: pg
+    models: [__dirname + '/models']
 })
-sequelize.addModels([User, ToDo]);
-
-export default sequelize;
+// sequelize.addModels([User, ToDo]);

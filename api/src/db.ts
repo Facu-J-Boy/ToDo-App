@@ -2,7 +2,7 @@ import {Sequelize} from 'sequelize-typescript';
 import config from './lib/config';
 import { User } from './models/User';
 import { ToDo } from './models/ToDo';
-import * as pg from 'pg';
+import pg from 'pg';
 config;
 
 const {URL_DATABASE} = process.env;
@@ -18,6 +18,7 @@ const {URL_DATABASE} = process.env;
 
 
 const sequelize = new Sequelize (`${URL_DATABASE}`, {
+    dialect: 'postgres',
     dialectModule: pg
 })
 sequelize.addModels([User, ToDo]);

@@ -1,6 +1,4 @@
 import { User } from "../../models/User";
-import { inputUser } from "interface";
-import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export const controller = {
 

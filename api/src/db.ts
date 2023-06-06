@@ -1,5 +1,7 @@
 import {Sequelize} from 'sequelize-typescript';  
 import config from './lib/config';
+import { User } from './models/User';
+import { ToDo } from './models/ToDo';
 config;
 
 const {URL_DATABASE} = process.env;
@@ -13,4 +15,8 @@ const {URL_DATABASE} = process.env;
 //  models: [__dirname + '/models'],
 // });
 
-export const sequelize = new Sequelize (`${URL_DATABASE}`)
+
+const sequelize = new Sequelize (`${URL_DATABASE}`)
+sequelize.addModels([User, ToDo]);
+
+export default sequelize;

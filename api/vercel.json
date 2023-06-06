@@ -1,4 +1,6 @@
 {
+    "version": 2,
+
     "builds": [
         {
             "src": "./index.ts",
@@ -7,16 +9,8 @@
     ],
     "routes": [
         {
-            "src": "/api/user",
-            "dest": "./src/routes/index.ts"
-        },
-        {
-            "src": "/api/todo",
-            "dest": "./src/routes/index.ts"
-        },
-        {
             "src": "/(.*)",
-            "dest": "index.ts"
+            "dest": "/"
           }
     ]
 }

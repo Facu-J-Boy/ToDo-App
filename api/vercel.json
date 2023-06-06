@@ -7,8 +7,12 @@
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "index.ts"
+            "src": "/api/user",
+            "dest": "./src/routes/user.ts"
+        },
+        {
+            "src": "/api/todo",
+            "dest": "./src/routes/toDo.ts"
         }
     ]
 }

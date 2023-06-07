@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "crypto": "npm:crypto-browserify",
-    "stream": "npm:stream-browserify",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -11,8 +9,10 @@
     "sequelize": "^6.32.0",
     "sequelize-typescript": "^2.1.5",
     "typescript": "^5.0.4",
-    "vercel": "^30.1.2",
-    "web3": "^1.10.0"
+    "vercel": "^30.1.2"
+  },
+  "browser": {
+    "crypto": false
   },
   "name": "api",
   "version": "1.0.0",

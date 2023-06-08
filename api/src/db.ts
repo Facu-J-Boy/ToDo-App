@@ -18,6 +18,8 @@ const {URL_DATABASE} = process.env;
 
 export const sequelize = new Sequelize (`${URL_DATABASE}`, {
     dialect: 'postgres',
+    logging: false,
+    native: false,
     dialectModule: pg,
     models: [__dirname + '/models']
 })

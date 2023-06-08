@@ -4,7 +4,7 @@ import { ActionTypes } from "./Types";
 
 // axios.defaults.baseURL = "http://localhost:3001/api";
 
-axios.defaults.baseURL = "to-do-app-five-nu.vercel.app"
+axios.defaults.baseURL = `${process.env.REACT_APP_BACKEND_URL}`
 
 export interface UserInterface {
     id: string | null,

@@ -12,9 +12,6 @@
     "typescript": "^5.0.4",
     "vercel": "^30.1.2"
   },
-  "browser": {
-    "crypto": false
-  },
   "name": "api",
   "version": "1.0.0",
   "main": "index.js",

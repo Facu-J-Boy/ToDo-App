@@ -4,7 +4,9 @@ import { ActionTypes } from "./Types";
 
 // axios.defaults.baseURL = "http://localhost:3001/api";
 
-axios.defaults.baseURL = `${process.env.REACT_APP_BACKEND_URL}`
+// axios.defaults.baseURL = `${process.env.REACT_APP_BACKEND_URL}`
+
+axios.defaults.baseURL = 'https://todo-app-qg9a.onrender.com/api'
 
 export interface UserInterface {
     id: string | null,

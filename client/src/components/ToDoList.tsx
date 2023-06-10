@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ToDo from './ToDo';
-import { ToDoInterface, UserInterface, getToDos } from '../Redux/Actions';
+import { ToDoInterface, getToDos } from '../Redux/Actions';
 import { StoreState } from '../Redux/Reducers';
 import { connect } from 'react-redux';
 import { auth } from '../Firebase';

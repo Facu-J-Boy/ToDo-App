@@ -17,10 +17,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({findOrCreateUser, user}): JSX.
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       user? navigate('/') : null      
     });
-  }, [navigate]);
+  }, []);
   
   return (
     <div>

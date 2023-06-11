@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 import { auth } from '../Firebase';
 import CreateToDoInput from './CreateToDoInput';
 import ScrollTop from './ScrollTop';
+import Loading from './Loading';
 
 interface ToDoListProps {
-  todos: ToDoInterface[] | string,
+  todos: ToDoInterface[] | string | [],
   getToDos(id: string): void
 }
 
@@ -27,22 +28,30 @@ const ToDoList: React.FC<ToDoListProps> = ({todos, getToDos}): JSX.Element => {
   
   return (
     <>
-    <div className='flex justify-center'>
-       <CreateToDoInput />
-    </div>
-       <div className="flex flex-col items-center">
-        {Array.isArray(todos)? todos.map((el) => <ToDo 
-        key={el.id} 
-        userId={userId}
-        id={el.id} 
-        text={el.text} />)
+    {
+      todos.length === 0?
+      <Loading />
       :
-      <p className='mt-10 text-2xl font-sans font-bold text-grey'>
-        {todos}
-      </p>
-        }
-       </div>
-       <ScrollTop />
+      (
+    <>
+    <div className='flex justify-center'>
+              <CreateToDoInput />
+    </div>
+            <div className="flex flex-col items-center">
+                {Array.isArray(todos) ? todos.map((el) => <ToDo
+                  key={el.id}
+                  userId={userId}
+                  id={el.id}
+                  text={el.text} />)
+                  :
+                  <p className='mt-10 text-2xl font-sans font-bold text-grey'>
+                    {todos}
+                  </p>}
+              </div>
+              <ScrollTop />
+    </>
+      )
+      }
     </>
   )
         }

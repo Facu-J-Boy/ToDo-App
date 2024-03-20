@@ -1,4 +1,10 @@
-import { Model, Column, Table, DataType, HasMany } from 'sequelize-typescript';
+import {
+  Model,
+  Column,
+  Table,
+  DataType,
+  HasMany,
+} from 'sequelize-typescript';
 import { ToDo } from './ToDo';
 
 interface UserAttributes {
@@ -12,24 +18,21 @@ export class User extends Model<UserAttributes> {
     type: DataType.STRING,
     defaultValue: DataType.UUIDV4,
     primaryKey: true,
-    allowNull: false
+    allowNull: false,
   })
   id!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
   })
   email!: string;
 
-  @HasMany(() => ToDo, 'userId') 
+  @HasMany(() => ToDo, 'userId')
   todos!: ToDo[];
 
   setToDo(todo: ToDo): void {
-    !this.todos?
-      this.todos = []
-    :
-    this.todos.push(todo);
+    !this.todos ? (this.todos = []) : this.todos.push(todo);
     this.save();
   }
 }

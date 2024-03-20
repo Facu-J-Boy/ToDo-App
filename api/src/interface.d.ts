@@ -1,11 +1,11 @@
 export interface inputUser {
-    id: string | null,
-    email: string
+  id: string | null;
+  email: string;
 }
 
 export interface outputUser {
-    id: string,
-    name: string,
-    lastName: string,
-    email: string
+  id: string;
+  name: string;
+  lastName: string;
+  email: string;
 }

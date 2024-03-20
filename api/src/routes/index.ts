@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import userRoutes from './user';
 import toDoRoutes from './toDo';
 

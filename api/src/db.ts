@@ -1,9 +1,9 @@
-import {Sequelize} from 'sequelize-typescript';  
+import { Sequelize } from 'sequelize-typescript';
 import config from './lib/config';
 import pg from 'pg';
 config;
 
-const {URL_DATABASE} = process.env;
+const { URL_DATABASE } = process.env;
 
 // export const sequelize = new Sequelize({
 //  dialect: 'postgres',
@@ -15,11 +15,10 @@ const {URL_DATABASE} = process.env;
 //  models: [__dirname + '/models'],
 // });
 
-
-export const sequelize = new Sequelize (`${URL_DATABASE}`, {
-    dialect: 'postgres',
-    logging: false,
-    native: false,
-    dialectModule: pg,
-    models: [__dirname + '/models']
-})
+export const sequelize = new Sequelize(`${URL_DATABASE}`, {
+  dialect: 'postgres',
+  logging: false,
+  native: false,
+  dialectModule: pg,
+  models: [__dirname + '/models'],
+});
